@@ -152,6 +152,12 @@ export const ACTIONS = {
 
 export type TAction = keyof typeof ACTIONS;
 
+export function isActionWithOptionalArgs(value: unknown): value is TActionWithOptionalArgs {
+    if (typeof value !== "string" || !Object.prototype.hasOwnProperty.call(ACTIONS, value)) return false;
+
+    return value !== "remove-media-asset" && value !== "remove-media-assets";
+}
+
 const ACTION_DEFAULT_SHORTCUTS = [
 	["toggle-play", ["space", "k"]],
 	["seek-forward", ["l"]],
